@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo/modules/aboutMe.dart';
 import 'package:todo/shared/components/default_form_field.dart';
 import 'package:todo/shared/constants/constants.dart';
 
@@ -29,6 +30,17 @@ class HomeLayout extends StatelessWidget {
               resizeToAvoidBottomInset: false,
               backgroundColor: Colors.black,
               key: scaffoldKey,
+              appBar: AppBar(
+                backgroundColor: Colors.black,
+                actions: [
+                  IconButton(
+                    onPressed: () {
+                      navigateTo(context,AboutMe());
+                    },
+                    icon: Icon(Icons.account_circle_outlined),
+                  )
+                ],
+              ),
               body: cubit.screens[cubit.bottomNavigtionIndex],
               floatingActionButton: FloatingActionButton(
                 backgroundColor: kThemeColorLight,
@@ -48,11 +60,12 @@ class HomeLayout extends StatelessWidget {
                         dateController.clear();
 
                         cubit.changeBottomSheetState(
-                            false,
-                            const Icon(
-                              Icons.edit,
-                              color: Colors.redAccent,
-                            ));
+                          false,
+                          const Icon(
+                            Icons.edit,
+                            color: Colors.redAccent,
+                          ),
+                        );
                       });
                     }
                   } else {
@@ -264,4 +277,8 @@ class HomeLayout extends StatelessWidget {
           }),
     );
   }
+}
+
+void navigateTo(BuildContext context, Widget widget) {
+  Navigator.push(context, MaterialPageRoute(builder: (context) => widget));
 }
