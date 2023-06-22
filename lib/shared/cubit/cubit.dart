@@ -90,13 +90,14 @@ class AppCubit extends Cubit<AppStates> {
     });
   }
 
-  inserToDatabase(
+  insertToDatabase(
       {required String title,
         required String time,
         required String date}) async {
     await database!.transaction((txn) async {
       txn
-          .rawInsert('INSERT INTO tasks (title, date, time, status) VALUES ("$title","$date","$time","New")')
+          .rawInsert('INSERT INTO tasks (title, date, time, status)'
+          ' VALUES ("$title","$date","$time","New")')
           .then((value) {
         getDataBase(database);
         print('$value Inserted Successfully');

@@ -49,7 +49,7 @@ class HomeLayout extends StatelessWidget {
                   if (cubit.isBottomSheetShown) {
                     if (formKey.currentState!.validate()) {
                       cubit
-                          .inserToDatabase(
+                          .insertToDatabase(
                               title: titleController.text,
                               time: timeController.text,
                               date: dateController.text)
